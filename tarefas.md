@@ -1,5 +1,5 @@
 1. Estrutura HTML e Organização
-Aluno 1 - Organizar o HTML para incluir elementos novos, como uma área de "Placar", "Nível", e "Instruções".
+Yuri - Organizar o HTML para incluir elementos novos, como uma área de "Placar", "Nível", e "Instruções".
 2. Estilo e Temática
 Aluno 2 - Personalizar o CSS para adicionar novas cores de fundo, diferentes formatos de balão, e trabalhar com a responsividade para telas menores.
 3. Interação com o Usuário
