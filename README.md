@@ -1,12 +1,9 @@
 ### Participantes do projeto
 
 # Miquéias (Prof)
-
-
-# Cleissiane
-=======
 Alunos:
 
+# Cleissiane
 # Esmael 
 # Yuri 
 # Fernando 
