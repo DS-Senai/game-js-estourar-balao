@@ -1,7 +1,5 @@
 ### Participantes do projeto
 
-# Miquéias (Prof)
-Alunos:
 
 # Cleissiane
 # Esmael 
