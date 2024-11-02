@@ -1,7 +1,10 @@
 1. Estrutura HTML e Organização
+Cleissiane - Estruturar o codigo, criar uma Pasta Assets, Js, Css, Imgs...
 Yuri - Organizar o HTML para incluir elementos novos, como uma área de "Placar", "Nível", e "Instruções".
 2. Estilo e Temática
-Aluno 2 - Personalizar o CSS para adicionar novas cores de fundo, diferentes formatos de balão, e trabalhar com a responsividade para telas menores.
+Esmael - Personalizar o CSS para adicionar novas cores de fundo, diferentes formatos de balão, e trabalhar com a responsividade para telas menores.
+Fabricio – Ao clicar na bolinha vai mudar o background 
+Lucas – Comentario no código
 3. Interação com o Usuário
 Aluno 3 - Melhorar o feedback visual do usuário, como criar uma animação para o balão ao ser estourado e adicionar efeitos sonoros.
 Fernando - Implementar um placar que aumente a pontuação cada vez que um balão for estourado e exibir a pontuação em tempo real na tela.
