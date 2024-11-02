@@ -2,8 +2,6 @@
 
 
 # Cleissiane
-# Esmael 
-# Yuri 
-# Fernando 
+
 
 
