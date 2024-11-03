@@ -1,0 +1,47 @@
+body {
+    background-image: url(./img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.container {
+    position: relative;
+}
+
+.balao {
+    position: absolute;
+    cursor: crosshair;
+    width: 120px;
+    height: 80px;
+    padding: 10px;
+} 
+
+img {
+    width: 100%;
+}
+
+
+
+/* .fio {
+    width: 2px;
+    height: 30px;
+    background-color: black;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+   
+} */
+
+
+/* .reflexo {
+    position: absolute;
+    width: 30px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    position: absolute;
+    transform: rotate(-20deg);
+} */
+
