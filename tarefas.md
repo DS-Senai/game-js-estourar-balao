@@ -16,3 +16,5 @@ Aluno 8 - Implementar mensagens de erro ou feedback se o jogador clicar em área
 Aluno 9 - Adicionar armazenamento de dados usando o localStorage para que a pontuação do jogador seja mantida ao longo de várias tentativas.
 8. Customizações Avançadas
 Aluno 10 - Implementar um menu inicial para personalização, onde o jogador possa escolher temas diferentes (balões de outras cores, formas, ou até fundos).
+
+
