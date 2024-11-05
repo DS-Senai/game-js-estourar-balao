@@ -18,3 +18,20 @@ function estourar(elemento) { /*SEGUNDA PARTE: Função pra Estourar*/
 function iniciar() { /* De tempo em tempo executara função*/
 	setInterval(addBola, 1000); /*1000 = 1 Segundo*/
 }
+
+	// function pontos(){ // FUNÇÃO DE SOMAR PONTOS
+//     if(estourar == TRUE){
+//        let pontuçao = bolasEstouradas * 5
+        
+//  } 
+//  }
+
+let bolasEstouradas = 0; // Pontuação total
+let pontosPorBola = 5; // Pontos por bola estourada
+
+// Função para atualizar os pontos
+function atualizarPontos() {
+    bolasEstouradas += pontosPorBola; // Incrementa a pontuação com base nos pontos por bola
+    console.log("Pontos: " + bolasEstouradas);
+}
+
