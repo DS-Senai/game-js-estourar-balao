@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jogo de Estourar Balões</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<div class="menu-container">
+		<h2>PERSONALIZE DO SEU JEITO</h2>
+
+		<div>
+			<label for="corBalao">Cor do Balão:</label>
+			<select id="corBalao">
+				<option value="red">Vermelho</option>
+				<option value="blue">Azul</option>
+				<option value="green">Verde</option>
+				<option value="yellow">Amarelo</option>
+			</select>
+		</div>
+
+		<div>
+			<label for="formatoBalao">Forma do Balão:</label>
+			<select id="formatoBalao">
+				<option value="circle">Circular</option>
+				<option value="square">Quadrado</option>
+			</select>
+		</div>
+
+		<div>
+			<label for="corFundo">Tema de Fundo:</label>
+			<select id="corFundo">
+				<option value="black">Preto</option>
+				<option value="skyblue">Azul Claro</option>
+				<option value="forestgreen">Verde</option>
+				<option value="violet">Violeta</option>
+			</select>
+		</div>
+
+		<button onclick="customizacao()">Iniciar Jogo</button>
+	</div>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
