@@ -1,76 +1,114 @@
-const jogo = document.querySelector("#areaJogo");
-const placar = document.querySelector("#pontos");
-const tempoRestanteDisplay = document.querySelector("#tempoRestante");
-const listaJogadores = document.querySelector("#listaJogadores");
+const areaJogo = document.getElementById("areaJogo");
+const pontosDisplay = document.getElementById("pontos");
+const tempoRestanteDisplay = document.getElementById("tempoRestante");
+const listaJogadores = document.getElementById("listaJogadores");
 
-let intervaloId;
-let tempoRestante = 30;
-let bolasEstouradas = 0;
-let pontosPorBola = 5;
-let intervalo = 1000; // Intervalo para aparecer balões
-let timerId;
+let intervaloCriacaoBalas;
+let intervaloTempo;
+let tempoRestante = 15;
+let pontos = 0;
+let nomeJogador = "";
 
+// Função para iniciar o jogo
 function iniciar() {
-    const nickname = prompt("Digite seu nickname:");
-    const jogador = document.createElement("li");
-    jogador.textContent = nickname + " - Pontuação: 0";
-    jogador.setAttribute("data-nickname", nickname);
-    listaJogadores.appendChild(jogador);
+    // Resetando o estado do jogo para o novo jogador
+    pontos = 0;
+    tempoRestante = 15;
 
-    intervaloId = setInterval(addBola, intervalo);
-    timerId = setInterval(atualizarTempo, 1000);
+    // Resetando as exibições de pontos e tempo
+    pontosDisplay.textContent = pontos;
+    tempoRestanteDisplay.textContent = tempoRestante;
+
+    // Limpa a área de jogo
+    areaJogo.innerHTML = "";
+
+    // Pergunta o nome do jogador e inicia o jogo
+    nomeJogador = prompt("Digite seu nome:");
+    if (!nomeJogador) {
+        alert("Por favor, insira um nome para jogar.");
+        return;
+    }
+
+    // Inicia a criação de balões e o cronômetro
+    intervaloCriacaoBalas = setInterval(adicionarBalao, 500);
+    intervaloTempo = setInterval(atualizarTempo, 1000);
 }
 
-function addBola() {
-    const bola = document.createElement("div");
-    bola.classList.add("bola");
-    bola.style.left = `${Math.random() * 90}%`;
-    bola.style.top = `${Math.random() * 90}%`;
-    bola.onclick = () => estourar(bola);
-    jogo.appendChild(bola);
+// Função para adicionar balões à tela
+function adicionarBalao() {
+    const balao = document.createElement("div");
+    balao.classList.add("bola");
 
-    if (jogo.children.length > 10) {
-        gameOver();
+    // Define posição aleatória dentro da área do jogo
+    const x = Math.floor(Math.random() * (areaJogo.offsetWidth - 50));
+    const y = Math.floor(Math.random() * (areaJogo.offsetHeight - 50));
+    balao.style.left = `${x}px`;
+    balao.style.top = `${y}px`;
+
+    // Evento de clique para estourar o balão
+    balao.addEventListener("click", () => {
+        pontos++;
+        pontosDisplay.textContent = pontos;
+        balao.remove();
+    });
+
+    areaJogo.appendChild(balao);
+
+    // Limita a quantidade de balões na tela
+    if (areaJogo.childElementCount > 15) {
+        encerrarJogo();
     }
 }
 
-function estourar(bola) {
-    bolasEstouradas += pontosPorBola;
-    atualizarPlacar();
-    jogo.removeChild(bola);
-}
-
-function atualizarPlacar() {
-    placar.textContent = bolasEstouradas;
-}
-
+// Função para atualizar o tempo
 function atualizarTempo() {
     tempoRestante--;
     tempoRestanteDisplay.textContent = tempoRestante;
+
     if (tempoRestante <= 0) {
-        gameOver();
+        encerrarJogo();
     }
 }
 
-function gameOver() {
-    clearInterval(intervaloId);
-    clearInterval(timerId);
-    jogo.innerHTML = ""; // Limpa os balões restantes
+// Função para encerrar o jogo
+function encerrarJogo() {
+    clearInterval(intervaloCriacaoBalas);
+    clearInterval(intervaloTempo);
 
-    alert(`Tempo esgotado! Sua pontuação: ${bolasEstouradas}`);
+    // Remove todos os balões da tela
+    while (areaJogo.firstChild) {
+        areaJogo.removeChild(areaJogo.firstChild);
+    }
 
-    // Atualiza o ranking do jogador
-    const nickname = document.querySelector(`li[data-nickname]`).getAttribute("data-nickname");
-    document.querySelector(`li[data-nickname="${nickname}"]`).textContent = `${nickname} - Pontuação: ${bolasEstouradas}`;
+    // Exibe pontuação final e adiciona ao ranking
+    alert(`Fim de jogo para ${nomeJogador}! Pontuação final: ${pontos}`);
+    atualizarRanking(nomeJogador, pontos);
 
-    // Reseta o jogo para recomeçar
-    resetarJogo();
+    // Exibe botão para reiniciar o jogo
+    let botaoReiniciar = document.getElementById("botaoReiniciar");
+    if (!botaoReiniciar) {
+        botaoReiniciar = document.createElement("button");
+        botaoReiniciar.id = "botaoReiniciar";
+        botaoReiniciar.textContent = "Reiniciar Jogo";
+        botaoReiniciar.addEventListener("click", reiniciarJogo);
+        document.body.appendChild(botaoReiniciar);
+    }
 }
 
-function resetarJogo() {
-    bolasEstouradas = 0;
-    tempoRestante = 30;
-    atualizarPlacar();
-    tempoRestanteDisplay.textContent = tempoRestante;
+// Função para adicionar o jogador ao ranking
+function atualizarRanking(nome, pontos) {
+    const itemLista = document.createElement("li");
+    itemLista.textContent = `${nome}: ${pontos} pontos`;
+    listaJogadores.appendChild(itemLista);
+}
+
+// Função para reiniciar o jogo
+function reiniciarJogo() {
+    // Remove o botão de reiniciar
+    document.body.removeChild(document.getElementById("botaoReiniciar"));
+    // Inicia um novo jogo
     iniciar();
 }
+
+// Garantir que o jogo comece ao carregar a página
+window.onload = iniciar;

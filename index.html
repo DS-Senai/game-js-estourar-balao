@@ -6,42 +6,33 @@
     <title>Jogo de Estourar Balões</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-<body onload="iniciar()">
+<body>
 
-    <header>
-        <h1>Jogo do Balão</h1>
-    </header>
+    <div id="jogo-container">
+        <div id="areaJogo">
+            <!-- Informações sobre o jogo no topo da área de jogo -->
+            <div id="informacoes-jogo">
+                <p>Tempo Restante: <span id="tempoRestante">15</span> segundos</p>
+                <p>Pontuação: <span id="pontos">0</span></p>
+            </div>
+        </div>
+        
+        <aside id="painel-lateral">
+            <header>
+                <h1>Jogo de Estourar Balões</h1>
+            </header>
 
-    <main>
-        <section id="instrucoes">
-            <h2>Instruções</h2>
-            <p>Use o mouse ou toque na tela para estourar os balões. Cada balão estourado aumenta sua pontuação!</p>
-        </section>
+            <section id="instrucoes">
+                <h2>Instruções</h2>
+                <p>Use o mouse ou toque na tela para estourar os balões. Cada balão estourado aumenta sua pontuação!</p>
+            </section>
 
-        <section id="placar">
-            <h2>Placar</h2>
-            <p>Pontuação: <span id="pontos">0</span></p>
-        </section>
-
-        <section id="tempo">
-            <h2>Tempo Restante</h2>
-            <p><span id="tempoRestante">30</span> segundos</p>
-        </section>
-
-        <section id="campoJogo">
-            <h2>Campo do Jogo</h2>
-            <div id="areaJogo"></div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Desenvolvido por turma do terceiro semestre do curso Desenvolvimento de Sistemas - SENAI-BA</p>
-    </footer>
-
-    <section id="ranking">
-        <h2>Ranking</h2>
-        <ul id="listaJogadores"></ul>
-    </section>
+            <section id="ranking">
+                <h2>Ranking</h2>
+                <ul id="listaJogadores"></ul>
+            </section>
+        </aside>
+    </div>
 
     <script src="assets/script.js"></script>
 </body>
