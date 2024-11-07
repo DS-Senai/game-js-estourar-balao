@@ -1,83 +1,115 @@
-const corpo = document.querySelector("body"); // selecionando o body
-const jogo = corpo.querySelector(".bolinhas");  // procurando a div bolinhas
+const areaJogo = document.getElementById("areaJogo");
+const pontosDisplay = document.getElementById("pontos");
+const tempoRestanteDisplay = document.getElementById("tempoRestante");
+const listaJogadores = document.getElementById("listaJogadores");
 
-const raking = document.querySelector('#raking'); // DIV onde esta o raking de jogadores
-const lista = raking.querySelector('ul'); // cada jogador é um ul, um elemento da lista
+let intervaloCriacaoBalas;
+let intervaloTempo;
+let tempoRestante = 15;
+let pontos = 0;
+let nomeJogador = "";
 
+// Função para iniciar o jogo
+function iniciar() {
+    // Resetando o estado do jogo para o novo jogador
+    pontos = 0;
+    tempoRestante = 15;
 
-let intervalo = 500;  // intervalo inicial do jogo
-let contadorDe10 =0; // conta quantas baloes foram estourados de 10 em 10
-var bolasEstouradas = 0; // quantidade de bolas estouradas = score
+    // Resetando as exibições de pontos e tempo
+    pontosDisplay.textContent = pontos;
+    tempoRestanteDisplay.textContent = tempoRestante;
 
+    // Limpa a área de jogo
+    areaJogo.innerHTML = "";
 
+    // Pergunta o nome do jogador e inicia o jogo
+    nomeJogador = prompt("Digite seu nome:");
+    if (!nomeJogador) {
+        alert("Por favor, insira um nome para jogar.");
+        return;
+    }
 
-
-function addBola() {
-	var bola = document.createElement("div"); /*Cria um elemento e armazena na variavel bola*/	
-	bola.setAttribute("class", "bola"); /*Adiciona o atributo class no bola*/
-	var p1 = Math.floor(Math.random() * 500); /* Irá gera um numero aleatorio, multiplicando por 500 vai gerar um numero de 0 a 500 decimal, para transforma o numero inteiro utilizar o flooor */	
-	var p2 = Math.floor(Math.random() * 400); /* Irá gera um numero aleatorio, multiplicando por 500 vai gerar um numero de 0 a 500 decimal, para transforma o numero inteiro utilizar o flooor */
-	
-	bola.setAttribute("style", "left:"+p1+"px;top:"+p2+"px;"); /*Inserir valores do p1 e p2 na div bola*/
-	bola.setAttribute("onclick", "estourar(this)"); /*Criar a ação de click*/ /*this - É o proprio elemento como parametro*/ /*Colocar na tela*/
-	
-	jogo.appendChild(bola); /*Pegar conteudo do site e adicionar um elemento novo*/	
-	console.log(jogo.children.length) // os "filhos do jogo" sao os baloes que estao criados na tela
-	if(jogo.children.length>9){  // se a quantidade de bolas na tela for maior que 9 o jogo acaba
-		gameOver();
-	}
+    // Inicia a criação de balões e o cronômetro
+    intervaloCriacaoBalas = setInterval(adicionarBalao, 500);
+    intervaloTempo = setInterval(atualizarTempo, 1000);
 }
 
-function estourar(elemento) { /*SEGUNDA PARTE: Função pra Estourar*/
-	bolasEstouradas++; // score
-	contadorDe10++;
-	if(contadorDe10 == 10){
-		clearInterval(intervaloId) // limpa o intervalo
-		contadorDe10 = 0; // zera o contador
-		intervalo-=25; // diminui o intervalo
-		intervaloId = setInterval(addBola, intervalo);// chama a funçao de adicionar bola com um intervalo menor
-	}
-	console.log("Bola estouradas: "+ bolasEstouradas)
-	jogo.removeChild(elemento); /*Remove o elementoo na tela*/
+// Função para adicionar balões à tela
+function adicionarBalao() {
+    const balao = document.createElement("div");
+    balao.classList.add("bola");
+
+    // Define posição aleatória dentro da área do jogo
+    const x = Math.floor(Math.random() * (areaJogo.offsetWidth - 50));
+    const y = Math.floor(Math.random() * (areaJogo.offsetHeight - 50));
+    balao.style.left = `${x}px`;
+    balao.style.top = `${y}px`;
+
+    // Evento de clique para estourar o balão
+    balao.addEventListener("click", () => {
+        pontos++;
+        pontosDisplay.textContent = pontos;
+        balao.remove();
+    });
+
+    areaJogo.appendChild(balao);
+
+    // Limita a quantidade de balões na tela
+    if (areaJogo.childElementCount > 15) {
+        encerrarJogo();
+    }
 }
 
-	
-function iniciar() { /* De tempo em tempo executara função*/
+// Função para atualizar o tempo
+function atualizarTempo() {
+    tempoRestante--;
+    tempoRestanteDisplay.textContent = tempoRestante;
 
-	let name = document.createElement("li");
-	name.innerHTML = String(prompt("Nickname:"));
-	
-	lista.appendChild(name);
-	intervaloId = setInterval(addBola, intervalo);
+    if (tempoRestante <= 0) {
+        encerrarJogo();
+    }
 }
 
-	setInterval(addBola, 1000); /*1000 = 1 Segundo*/
+// Função para encerrar o jogo
+function encerrarJogo() {
+    clearInterval(intervaloCriacaoBalas);
+    clearInterval(intervaloTempo);
 
+    // Remove todos os balões da tela
+    while (areaJogo.firstChild) {
+        areaJogo.removeChild(areaJogo.firstChild);
+    }
 
-	// function pontos(){ // FUNÇÃO DE SOMAR PONTOS
-//     if(estourar == TRUE){
-//        let pontuçao = bolasEstouradas * 5
-        
-//  } 
-//  }
+    // Exibe pontuação final e adiciona ao ranking
+    alert(`Fim de jogo para ${nomeJogador}! Pontuação final: ${pontos}`);
+    atualizarRanking(nomeJogador, pontos);
 
-
-let pontosPorBola = 5; // Pontos por bola estourada
-
-// Função para atualizar os pontos
-function atualizarPontos() {
-    bolasEstouradas += pontosPorBola; // Incrementa a pontuação com base nos pontos por bola
-    console.log("Pontos: " + bolasEstouradas);
+    // Exibe botão para reiniciar o jogo
+    let botaoReiniciar = document.getElementById("botaoReiniciar");
+    if (!botaoReiniciar) {
+        botaoReiniciar = document.createElement("button");
+        botaoReiniciar.id = "botaoReiniciar";
+        botaoReiniciar.textContent = "Reiniciar Jogo";
+        botaoReiniciar.addEventListener("click", reiniciarJogo);
+        document.body.appendChild(botaoReiniciar);
+    }
 }
 
-function gameOver(){
-	clearInterval(intervaloId) // limpa o intervalo
-	intervalo = 500;  // intervalo inicial do jogo
-   while(jogo.children.length> 0){
-	   jogo.removeChild(jogo.children[0])
-   }
-	alert("GAME OVER\nOK para recomeçar");
-   
-	iniciar()
-   }
+// Função para adicionar o jogador ao ranking
+function atualizarRanking(nome, pontos) {
+    const itemLista = document.createElement("li");
+    itemLista.textContent = `${nome}: ${pontos} pontos`;
+    listaJogadores.appendChild(itemLista);
+}
 
+// Função para reiniciar o jogo
+function reiniciarJogo() {
+    // Remove o botão de reiniciar
+    document.body.removeChild(document.getElementById("botaoReiniciar"));
+    // Inicia um novo jogo
+    iniciar();
+}
+
+// Garantir que o jogo comece ao carregar a página
+window.onload = iniciar;
+>>>>>>> temp
