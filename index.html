@@ -1,26 +1,12 @@
 <!DOCTYPE html>
-<html>
-	<link rel="stylesheet" href="style.css">
-	<head>
-		<title>Jogo de Estourar Balões</title>
-		<style type="text/css">
-		.bola {
-			width:100px;
-			height:100px;
-			background-color: red;
-			border-radius:50px;
-			position:absolute;
-			background-size: 100px;
-			background-repeat: no-repeat;
-			color: white;
-		}
-		body {
-			background-color: black;
-		}
-		</style>
-	</head>
-	<body onload="iniciar()">
-<<<<<<< HEAD
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Estourar Balões</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body onload="iniciar()">
 
     <header>
         <h1>Jogo do Balão</h1>
@@ -37,27 +23,14 @@
             <p>Pontuação: <span id="pontos">0</span></p>
         </section>
 
-        <section id="nivel">
-            <h2>Nível</h2>
-            <p>Nível Atual: <span id="nivelAtual">1</span></p>
+        <section id="tempo">
+            <h2>Tempo Restante</h2>
+            <p><span id="tempoRestante">30</span> segundos</p>
         </section>
-
-				<section id="escolhaBalao">
-					<h2>Escolha seu Balão</h2>
-					<div id="baloesDisponiveis">
-							<div class="balao1"> </div>
-							<div class="balao2"> </div>
-							<div class="balao3"> </div>
-							<div class="balao4"> </div>
-							<div class="balao5"> </div>
-					</div>
-			  </section>
 
         <section id="campoJogo">
             <h2>Campo do Jogo</h2>
-            <div id="areaJogo" style="border: 2px solid #000; width: 100%; height: 400px; position: relative;"> <!--style apenas representativo que pode ser alterado por Esmael-->
-                <!-- a ideia é que os balões aparecerão nessa div aqui -->
-            </div>
+            <div id="areaJogo"></div>
         </section>
     </main>
 
@@ -65,19 +38,11 @@
         <p>Desenvolvido por turma do terceiro semestre do curso Desenvolvimento de Sistemas - SENAI-BA</p>
     </footer>
 
-=======
-		<div class="bolinhas"></div>
-		<section style="display: flex; margin-left: 700px;">
-			<div style="display: flex; flex-direction: column; align-items: center; background-color: white; width: 1000px; " id="raking">
-				<h1 style="color: black;">Nome dos jogadores</h1>
-				<div class="jogadores">
-					<ul>
-					</ul>
-				</div>
-			</div>
-		</section>
-		
-		<script type="text/javascript" src="script.js"></script>
->>>>>>> Davi
+    <section id="ranking">
+        <h2>Ranking</h2>
+        <ul id="listaJogadores"></ul>
+    </section>
+
+    <script src="assets/script.js"></script>
 </body>
 </html>
