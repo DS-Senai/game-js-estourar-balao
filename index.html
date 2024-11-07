@@ -6,25 +6,20 @@
     <title>Jogo de Estourar Balões</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body onload="iniciar()">
 
     <div id="jogo-container">
-        <div id="areaJogo">
-            <!-- Informações sobre o jogo no topo da área de jogo -->
-            <div id="informacoes-jogo">
-                <p>Tempo Restante: <span id="tempoRestante">15</span> segundos</p>
-                <p>Pontuação: <span id="pontos">0</span></p>
-            </div>
-        </div>
-        
+        <div id="areaJogo"></div>
+
+        <!-- Painel de Informações no Lado Direito -->
         <aside id="painel-lateral">
             <header>
                 <h1>Jogo de Estourar Balões</h1>
             </header>
 
-            <section id="instrucoes">
-                <h2>Instruções</h2>
-                <p>Use o mouse ou toque na tela para estourar os balões. Cada balão estourado aumenta sua pontuação!</p>
+            <section id="informacoes-jogo">
+                <p>Tempo Restante: <span id="tempoRestante">15</span> segundos</p>
+                <p>Pontuação: <span id="pontos">0</span></p>
             </section>
 
             <section id="ranking">
@@ -37,4 +32,3 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
-

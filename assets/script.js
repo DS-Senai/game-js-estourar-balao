@@ -5,24 +5,24 @@ const listaJogadores = document.getElementById("listaJogadores");
 
 let intervaloCriacaoBalas;
 let intervaloTempo;
-let tempoRestante = 15;
-let pontos = 0;
-let nomeJogador = "";
+let tempoRestante;
+let pontos;
+let nomeJogador;
 
 // Função para iniciar o jogo
 function iniciar() {
-    // Resetando o estado do jogo para o novo jogador
+    // Reseta variáveis
     pontos = 0;
     tempoRestante = 15;
-
-    // Resetando as exibições de pontos e tempo
+    
+    // Atualiza exibição inicial de pontos e tempo
     pontosDisplay.textContent = pontos;
     tempoRestanteDisplay.textContent = tempoRestante;
 
     // Limpa a área de jogo
     areaJogo.innerHTML = "";
 
-    // Pergunta o nome do jogador e inicia o jogo
+    // Obtém o nome do jogador e inicia o jogo se o nome for válido
     nomeJogador = prompt("Digite seu nome:");
     if (!nomeJogador) {
         alert("Por favor, insira um nome para jogar.");
@@ -105,11 +105,14 @@ function atualizarRanking(nome, pontos) {
 // Função para reiniciar o jogo
 function reiniciarJogo() {
     // Remove o botão de reiniciar
-    document.body.removeChild(document.getElementById("botaoReiniciar"));
+    const botaoReiniciar = document.getElementById("botaoReiniciar");
+    if (botaoReiniciar) {
+        botaoReiniciar.remove();
+    }
+
     // Inicia um novo jogo
     iniciar();
 }
 
 // Garantir que o jogo comece ao carregar a página
 window.onload = iniciar;
->>>>>>> temp
