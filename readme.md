@@ -21,3 +21,4 @@ O jogo foi desenvolvido pelo professor **Miquéias Sousa** 👨‍🏫 em colabo
 ## Contribuições 🤝
 
 Este projeto é um exemplo de aplicação de técnicas de programação e desenvolvimento de jogos. Caso queira contribuir, sinta-se à vontade para fazer um **fork** deste repositório e enviar **pull requests**! 🔄
+
